@@ -3,8 +3,20 @@ import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
+import { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import {
+  useGLTF,
+  Stage,
+  Grid,
+  OrbitControls,
+  Environment,
+  PerspectiveCamera,
+  OrthographicCamera,
+} from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+
 import { api } from "../utils/api";
-import { Canvas } from "@react-three/fiber";
 import Box from "../components/Box";
 
 const Home: NextPage = () => {
@@ -15,7 +27,39 @@ const Home: NextPage = () => {
       <Canvas>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Box position={[0, 0, -20]} rotation={[0, -90, 0]} />
+        <Stage
+          intensity={0.5}
+          environment="city"
+          shadows={{ type: "accumulative", bias: -0.001 }}
+          adjustCamera={false}
+        >
+          <Box position={[0, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[10, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[20, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[30, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[40, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[50, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[60, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[70, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[80, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[90, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[100, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[110, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[120, 0, 0]} rotation={[0, -90, 0]} />
+          <Box position={[130, 0, 0]} rotation={[0, -90, 0]} />
+        </Stage>
+        <OrthographicCamera
+          left={10}
+          right={10}
+          top={10}
+          bottom={10}
+          makeDefault
+          position={[0, 0, 10]}
+        />
+        <EffectComposer disableNormalPass>
+          <Bloom luminanceThreshold={1} mipmapBlur />
+        </EffectComposer>
+        {/* <Environment background preset="night" blur={0.8} /> */}
       </Canvas>
     </div>
   );
