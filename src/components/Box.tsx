@@ -1,25 +1,23 @@
-import React, { forwardRef, useState, useRef } from "react";
-import type { ThreeElements } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Vector3 } from "three";
+import React, { forwardRef, useState, useRef } from 'react';
+import type { ThreeElements } from '@react-three/fiber';
+import { useLoader } from '@react-three/fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { Vector3 } from 'three';
 
-type BoxProps = JSX.IntrinsicElements["mesh"] & {
+type BoxProps = JSX.IntrinsicElements['mesh'] & {
   ref?: React.Ref<THREE.Mesh>;
 };
 
 const Box = forwardRef<THREE.Mesh, BoxProps>((props, ref) => {
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
-  const { nodes } = useLoader(GLTFLoader, "/cs-dev-mark-001.glb");
+  const { nodes } = useLoader(GLTFLoader, '/cs-dev-mark-001.glb');
 
   const dir = new Vector3(1, 0, 0);
-
-  //normalize the direction vector (convert to vector of length 1)
   dir.normalize();
 
   const origin = new Vector3(0, 0, 0);
-  const length = 1;
+  const length = 5;
   const hex = 0xffff00;
 
   return (
@@ -34,11 +32,11 @@ const Box = forwardRef<THREE.Mesh, BoxProps>((props, ref) => {
       receiveShadow
       geometry={nodes.Cube.geometry}
     >
-      <meshStandardMaterial color={hovered ? "hotpink" : "white"} />
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'white'} />
       <arrowHelper args={[dir, origin, length, hex]} />
     </mesh>
   );
 });
 
-Box.displayName = "Box";
+Box.displayName = 'Box';
 export default Box;

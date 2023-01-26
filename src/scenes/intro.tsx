@@ -1,13 +1,14 @@
-import { PerspectiveCamera } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { PerspectiveCamera } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { useRef } from 'react';
 
-import Box from "../components/Box";
+import Box from '../components/Box';
 
 const IntroScene = () => {
   const boxRef = useRef<THREE.Mesh>(null!);
 
-  useFrame(({ clock }) => {
+  useFrame((state) => {
+    const { clock } = state;
     boxRef.current.rotation.y = (clock.getElapsedTime() * 2 * Math.PI) / 10;
   });
 
