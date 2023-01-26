@@ -4,8 +4,8 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Vector3 } from "three";
 
-const Box = (props: ThreeElements["mesh"]) => {
-  const ref = useRef<THREE.Mesh>(null!);
+const Box = forwardRef((props: ThreeElements["mesh"], ref) => {
+  const meshRef = useRef<THREE.Mesh>(null!);
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
   const { nodes } = useLoader(GLTFLoader, "/cs-dev-mark-001.glb");
@@ -35,6 +35,7 @@ const Box = (props: ThreeElements["mesh"]) => {
       <arrowHelper args={[dir, origin, length, hex]} />
     </mesh>
   );
-};
+});
 
+Box.displayName = "Box";
 export default Box;

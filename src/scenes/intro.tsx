@@ -5,10 +5,10 @@ import { useRef } from "react";
 import Box from "../components/Box";
 
 const IntroScene = () => {
-  const yRef = useRef(-Math.PI / 2);
+  const boxRef = useRef<THREE.Mesh>(null!);
   // use useFrame to rotate the box around the y axis, 2 radians every 5 s
   useFrame(({ clock }) => {
-    yRef.current = (clock.getElapsedTime() * 2 * Math.PI) / 5;
+    boxRef.current.rotation.y = clock.getElapsedTime() * 2 * Math.PI;
   });
 
   return (
@@ -16,7 +16,7 @@ const IntroScene = () => {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <PerspectiveCamera makeDefault position={[0, 0, 100]} />
-      <Box position={[0, 0, 0]} rotation={[0, yRef.current, 0]} />
+      <Box position={[0, 0, 0]} rotation={[0, -Math.PI / 2, 0]} ref={boxRef} />
     </>
   );
 };
