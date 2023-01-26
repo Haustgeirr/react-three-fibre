@@ -6,9 +6,9 @@ import Box from "../components/Box";
 
 const IntroScene = () => {
   const boxRef = useRef<THREE.Mesh>(null!);
-  // use useFrame to rotate the box around the y axis, 2 radians every 5 s
+
   useFrame(({ clock }) => {
-    boxRef.current.rotation.y = clock.getElapsedTime() * 2 * Math.PI;
+    boxRef.current.rotation.y = (clock.getElapsedTime() * 2 * Math.PI) / 10;
   });
 
   return (
