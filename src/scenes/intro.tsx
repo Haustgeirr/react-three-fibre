@@ -75,8 +75,8 @@ const Scene = () => {
         key={object.uuid}
         ref={boxRef}
         position={object.position}
-        rotation={object.rotation || [0, 0, 0]}
-        scale={object.scale || [1, 1, 1]}
+        rotation={object.rotation}
+        scale={object.scale}
       />
     );
   };
