@@ -1,5 +1,4 @@
-import React, { forwardRef, useState, useRef } from 'react';
-import type { ThreeElements } from '@react-three/fiber';
+import React, { forwardRef, useState } from 'react';
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Vector3 } from 'three';
