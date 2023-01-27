@@ -18,7 +18,7 @@ const Box = forwardRef<THREE.Mesh, BoxProps>((props, ref) => {
 
   const origin = new Vector3(0, 0, 0);
   const length = 5;
-  const hex = 0xffff00;
+  const rgb = 'rgb(255, 0, 0)';
 
   return (
     <mesh
@@ -33,7 +33,7 @@ const Box = forwardRef<THREE.Mesh, BoxProps>((props, ref) => {
       geometry={nodes.Cube.geometry}
     >
       <meshStandardMaterial color={hovered ? 'hotpink' : 'white'} />
-      <arrowHelper args={[dir, origin, length, hex]} />
+      <arrowHelper args={[dir, origin, length, rgb]} />
     </mesh>
   );
 });
