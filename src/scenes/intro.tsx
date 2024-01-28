@@ -20,6 +20,8 @@ type SceneJson = {
   objects: SceneObject[];
 };
 
+// We will need to generate this from the backend
+// esp the UUIDs and provide them forward
 const sceneJson: SceneJson = {
   objects: [
     {
@@ -58,6 +60,17 @@ const SceneCanvas = () => {
   );
 };
 
+// get individual objects objects to animate in a nice way
+// how do we define pr object animations?
+// should we just use a useFrame hook in each objec?
+// or should we have a global animation hook?
+// or should we have a global animation hook that can be used by each object?
+// if we do it per object how do we pass in the animation instructions?
+// consider a unity go. in that case we would have an animation controller per object, and we define those animations based on interactions. we're not looking to do IK or anything at this point. We just need to handle all user input. And set up listeners in the animatable objects.
+// this should really then be within a canvas object so that we don't use the react state system
+
+// TODO get objects to be animated individually
+// TODO control an object using user input
 const Scene = () => {
   const boxRef = useRef<THREE.Mesh>(null!);
 
